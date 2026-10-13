@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="NORTE STUDIO: prendas esenciales, diseño contemporáneo y estilo sin esfuerzo.">
+  <title>NORTE STUDIO — Vestí tu esencia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0a;
+      --surface: #111;
+      --surface-light: #171717;
+      --text: #f5f5f3;
+      --muted: #92928e;
+      --line: #292929;
+      --accent: #d8d5cc;
+      --font-body: "DM Sans", sans-serif;
+      --font-display: "Manrope", sans-serif;
+      --content-width: 1240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 82px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .container {
+      width: min(var(--content-width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .announcement {
+      padding: 9px 16px;
+      background: var(--accent);
+      color: #111;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(10,10,10,.88);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .19em;
+      white-space: nowrap;
+    }
+
+    .brand span { color: #85857f; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #c6c6c2;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+
+    .nav-links a, .footer-links a { transition: color .2s ease; }
+    .nav-links a:hover, .footer-links a:hover { color: white; }
+
+    .nav-cta {
+      border: 1px solid #555;
+      padding: 11px 16px;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .nav-cta:hover { background: var(--text); color: #111; }
+
+    .hero {
+      min-height: min(760px, 85vh);
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: #151515;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.84) 0%, rgba(0,0,0,.54) 48%, rgba(0,0,0,.12) 100%),
+        linear-gradient(0deg, rgba(0,0,0,.45), transparent 50%),
+        url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2200&q=85") center 38% / cover;
+      transform: scale(1.02);
+      animation: heroReveal 1.2s ease both;
+    }
+
+    .hero-content {
+      width: min(var(--content-width), calc(100% - 48px));
+      margin-inline: auto;
+      padding-block: 110px;
+      animation: riseIn .8s .1s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: #d0d0cb;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 27px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .hero h1 {
+      max-width: 720px;
+      margin: 23px 0 18px;
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 98px);
+      font-weight: 500;
+      letter-spacing: -.075em;
+      line-height: .98;
+    }
+
+    .hero h1 em {
+      color: #c1beb5;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .hero-copy {
+      max-width: 410px;
+      margin-bottom: 32px;
+      color: #d0d0cb;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 20px;
+      background: var(--text);
+      color: #111;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); background: white; }
+    .button svg { width: 15px; height: 15px; }
+
+    .hero-note {
+      position: absolute;
+      right: max(24px, calc((100vw - var(--content-width)) / 2));
+      bottom: 34px;
+      color: #ddd;
+      font-size: 9px;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .section { padding-block: 105px; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .section-heading h2 {
+      margin: 15px 0 0;
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 500;
+      letter-spacing: -.06em;
+    }
+
+    .section-description {
+      max-width: 320px;
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px 18px;
+    }
+
+    .product-card {
+      min-width: 0;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .product-card.visible { opacity: 1; transform: translateY(0); }
+
+    .product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: #191919;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease;
+      filter: saturate(.78);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.045);
+      filter: saturate(.95);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      padding: 7px 9px;
+      background: rgba(10,10,10,.76);
+      color: white;
+      font-size: 9px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .product-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 15px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .product-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .product-price {
+      color: #e8e8e3;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .product-action {
+      display: inline-flex;
+      margin-top: 13px;
+      color: #bdbdb8;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+
+    .product-action:hover { color: white; }
+
+    .manifesto {
+      padding-block: 90px;
+      border-block: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.055), transparent 60%),
+        #0d0d0d;
+      text-align: center;
+    }
+
+    .manifesto blockquote {
+      max-width: 800px;
+      margin: 25px auto 22px;
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4.3vw, 48px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: 1.2;
+    }
+
+    .manifesto p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding-block: 78px;
+    }
+
+    .contact h2 {
+      margin: 14px 0 10px;
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 500;
+      letter-spacing: -.06em;
+    }
+
+    .contact p {
+      max-width: 440px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .whatsapp-button {
+      border: 1px solid #5e5e58;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .whatsapp-button:hover { background: var(--text); color: #111; }
+
+    .site-footer { border-top: 1px solid var(--line); }
+
+    .footer-inner {
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-copy, .footer-links {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .footer-links { display: flex; gap: 22px; }
+
+    .toast {
+      position: fixed;
+      z-index: 30;
+      right: 20px;
+      bottom: 20px;
+      padding: 13px 17px;
+      background: #e9e8e2;
+      color: #111;
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroReveal {
+      from { opacity: .5; transform: scale(1.06); }
+      to { opacity: 1; transform: scale(1.02); }
+    }
+
+    @media (max-width: 760px) {
+      .container, .hero-content { width: min(100% - 36px, var(--content-width)); }
+      .nav { min-height: 64px; }
+      .nav-links { gap: 18px; }
+      .nav-links a:first-child { display: none; }
+      .nav-cta { padding: 10px 11px; font-size: 9px; }
+      .hero { min-height: 680px; min-height: min(760px, 86svh); }
+      .hero::before {
+        background:
+          linear-gradient(90deg, rgba(0,0,0,.76), rgba(0,0,0,.18)),
+          linear-gradient(0deg, rgba(0,0,0,.55), transparent 70%),
+          url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85") 58% center / cover;
+      }
+      .hero-content { padding-block: 90px; }
+      .hero h1 { font-size: clamp(50px, 12vw, 78px); }
+      .section { padding-block: 76px; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 13px; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .section-description { max-width: 440px; }
+      .product-info { flex-wrap: wrap; }
+      .product-price { width: 100%; }
+      .contact { grid-template-columns: 1fr; padding-block: 65px; }
+      .contact .button { justify-self: start; }
+    }
+
+    @media (max-width: 420px) {
+      .brand { font-size: 15px; letter-spacing: .14em; }
+      .nav-links { gap: 12px; font-size: 11px; }
+      .nav-cta { letter-spacing: .07em; }
+      .product-info h3 { font-size: 12px; }
+      .footer-inner { align-items: start; flex-direction: column; justify-content: center; padding-block: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      .product-card { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">Envíos a todo Paraguay · Colección esencial 2026</div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#" aria-label="NORTE STUDIO, inicio">NORTE <span>STUDIO</span></a>
+      <div class="nav-links">
+        <a href="#coleccion">Colección</a>
+        <a href="#filosofia">Filosofía</a>
+      </div>
+      <a class="nav-cta" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <span class="eyebrow">Diseño con intención</span>
+        <h1 id="hero-title">Vestí tu<br><em>esencia.</em></h1>
+        <p class="hero-copy">Prendas esenciales, líneas limpias y una forma de vestir que habla por vos. Diseñado para durar. Hecho para todos los días.</p>
+        <a class="button" href="#coleccion">
+          Explorar colección
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+      <span class="hero-note">Asunción, Paraguay · Desde 2024</span>
+    </section>
+
+    <section class="section container" id="coleccion" aria-labelledby="collection-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Selección de temporada</span>
+          <h2 id="collection-title">Piezas esenciales</h2>
+        </div>
+        <p class="section-description">Una colección pensada para combinar sin esfuerzo. Siluetas versátiles, tonos atemporales y detalles que importan.</p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=82" alt="Remera de algodón blanca" loading="lazy">
+            <span class="product-tag">Más elegido</span>
+          </div>
+          <div class="product-info">
+            <div><h3>Remera Essential</h3><p>Algodon premium · Blanco</p></div>
+            <span class="product-price">Gs. 676.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Remera Essential">Consultar por WhatsApp ↗</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=82" alt="Camisa oversize de color neutro" loading="lazy">
+            <span class="product-tag">Nuevo</span>
+          </div>
+          <div class="product-info">
+            <div><h3>Camisa Norte</h3><p>Poplín liviano · Arena</p></div>
+            <span class="product-price">Gs. 329.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Camisa Norte">Consultar por WhatsApp ↗</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=900&q=82" alt="Chaqueta urbana oscura" loading="lazy">
+            <span class="product-tag">Edición limitada</span>
+          </div>
+          <div class="product-info">
+            <div><h3>Chaqueta Studio</h3><p>Denim rígido · Negro</p></div>
+            <span class="product-price">Gs. 590.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Chaqueta Studio">Consultar por WhatsApp ↗</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=82" alt="Pantalón de corte recto oscuro" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div><h3>Pantalón Relaxed</h3><p>Gabardina suave · Grafito</p></div>
+            <span class="product-price">Gs. 389.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Pantalón Relaxed">Consultar por WhatsApp ↗</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=900&q=82" alt="Buzo gris de estilo minimalista" loading="lazy">
+            <span class="product-tag">Favorito</span>
+          </div>
+          <div class="product-info">
+            <div><h3>Buzo Forma</h3><p>Frisa premium · Gris humo</p></div>
+            <span class="product-price">Gs. 420.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Buzo Forma">Consultar por WhatsApp ↗</a>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img class="product-image" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=82" alt="Bolso negro de líneas sencillas" loading="lazy">
+          </div>
+          <div class="product-info">
+            <div><h3>Bolso Diario</h3><p>Lona estructurada · Negro</p></div>
+            <span class="product-price">Gs. 275.000</span>
+          </div>
+          <a class="product-action" href="#" data-product="Bolso Diario">Consultar por WhatsApp ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto" id="filosofia">
+      <div class="container">
+        <span class="eyebrow">Nuestra filosofía</span>
+        <blockquote>“Menos ruido. Más intención. Prendas para acompañar tu propio camino.”</blockquote>
+        <p>NORTE STUDIO · Asunción, Paraguay</p>
+      </div>
+    </section>
+
+    <section class="contact container" id="contacto">
+      <div>
+        <span class="eyebrow">Atención personalizada</span>
+        <h2>¿Buscás tu próximo esencial?</h2>
+        <p>Consultanos sobre talles, disponibilidad y envíos. Estamos para ayudarte a encontrar tu próxima pieza favorita.</p>
+      </div>
+      <a class="button whatsapp-button" href="#" id="contact-button">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.7Z" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 8.3c.2-.5.4-.5.7-.5h.5c.2 0 .3.1.4.4l.6 1.4c.1.2.1.4 0 .5l-.5.6c-.2.2-.2.3 0 .6.5.8 1.1 1.4 1.9 1.9.2.1.4.1.6-.1l.7-.8c.2-.2.3-.2.6-.1l1.3.6c.3.1.4.2.4.4 0 .3-.2 1-.7 1.4-.5.4-1.2.6-1.9.4-1.1-.3-2.4-.9-3.6-2.1-1.2-1.2-1.8-2.5-2-3.4-.2-.5-.1-.9.1-1.2Z" fill="currentColor"/></svg>
+        Escribir por WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <a class="brand" href="#">NORTE <span>STUDIO</span></a>
+      <span class="footer-copy">© <span id="year"></span> NORTE STUDIO. Todos los derechos reservados.</span>
+      <div class="footer-links">
+        <a href="#coleccion">Colección</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Abriendo WhatsApp…</div>
+
+  <script>
+    // Cambia este número por el WhatsApp de la marca:
+    // incluye código de país, sin +, espacios ni guiones.
+    const WHATSAPP_NUMBER = "595981234567";
+
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    document.querySelectorAll("[data-product]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const product = link.dataset.product;
+        openWhatsApp(`Hola, NORTE STUDIO. Quiero consultar por ${product}. ¿Podrían pasarme más información sobre talles y disponibilidad?`);
+      });
+    });
+
+    document.getElementById("contact-button").addEventListener("click", (event) => {
+      event.preventDefault();
+      openWhatsApp("Hola, NORTE STUDIO. Quisiera recibir más información sobre la colección.");
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cards = document.querySelectorAll(".product-card");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      cards.forEach((card) => observer.observe(card));
+    } else {
+      cards.forEach((card) => card.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
